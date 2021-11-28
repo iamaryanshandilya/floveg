@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -48,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   classifyImage(File image) async {
     output = await Tflite.runModelOnImage(
         path: image.path,
-        numResults: 5,
+        numResults: 131,
         threshold: 0.5,
         imageMean: 127.5,
         imageStd: 127.5);
@@ -175,9 +177,10 @@ class _HomePageState extends State<HomePage> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         stops: const [0.004, 1],
+                        // ignore: prefer_const_literals_to_create_immutables
                         colors: [
-                          Color(0xFFa8e063),
-                          Color(0xFF56ab2f),
+                          Color(0xFF00B4DB),
+                          Color(0xFF0083B0),
                         ],
                       ),
                     ),
@@ -190,6 +193,24 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: ClipRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 2.7,
+                      sigmaY: 1.7,
+                    ),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      decoration:
+                          BoxDecoration(color: Colors.blueGrey.withOpacity(0.7)),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
                 ),
@@ -198,22 +219,22 @@ class _HomePageState extends State<HomePage> {
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     SizedBox(
-                      height: 100,
+                      height: 60,
                     ),
-                    Text(
-                      'Teachable Machine CNN',
-                      style: TextStyle(
-                        color: const Color(0xFFEEDA28),
-                        fontSize: 15,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
+                    // Text(
+                    //   'Teachable Machine CNN',
+                    //   style: TextStyle(
+                    //     color: const Color(0xFFEEDA28),
+                    //     fontSize: 15,
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 6,
+                    // ),
                     const Text(
-                      'Detect Flowers',
+                      'Detect Flowers and Vegetables',
                       style: TextStyle(
-                        color: Color(0xFFE99600),
+                        color: Color(0xFF000000),
                         fontWeight: FontWeight.w500,
                         fontSize: 28,
                       ),
@@ -299,8 +320,8 @@ class _HomePageState extends State<HomePage> {
                                 gradient: LinearGradient(
                                   stops: const [0.004, 1],
                                   colors: [
-                                    Color(0xFFa8e063),
-                                    Color(0xFF56ab2f),
+                          Color(0xFF00B4DB),
+                          Color(0xFF0083B0),
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(6),
@@ -331,8 +352,8 @@ class _HomePageState extends State<HomePage> {
                                 gradient: LinearGradient(
                                   stops: const [0.004, 1],
                                   colors: [
-                                    Color(0xFFa8e063),
-                                    Color(0xFF56ab2f),
+                          Color(0xFF00B4DB),
+                          Color(0xFF0083B0),
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(6),
@@ -366,8 +387,8 @@ class _HomePageState extends State<HomePage> {
                                 gradient: LinearGradient(
                                   stops: const [0.004, 1],
                                   colors: [
-                                    Color(0xFFa8e063),
-                                    Color(0xFF56ab2f),
+                          Color(0xFF00B4DB),
+                          Color(0xFF0083B0),
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(6),
